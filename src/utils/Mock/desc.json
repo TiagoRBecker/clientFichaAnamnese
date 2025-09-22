@@ -1,0 +1,39 @@
+[
+    {
+      "code": "DESCONTO10",
+      "discountPercentage": 10
+    },
+    {
+      "code": "DESCONTO15",
+      "discountPercentage": 15
+    },
+    {
+      "code": "DESCONTO20",
+      "discountPercentage": 20
+    },
+    {
+      "code": "DESCONTO25",
+      "discountPercentage": 25
+    },
+    {
+      "code": "DESCONTO30",
+      "discountPercentage": 30
+    },
+    {
+      "code": "DESCONTO35",
+      "discountPercentage": 35
+    },
+    {
+      "code": "DESCONTO40",
+      "discountPercentage": 40
+    },
+    {
+      "code": "DESCONTO45",
+      "discountPercentage": 45
+    },
+    {
+      "code": "DESCONTO50",
+      "discountPercentage": 50
+    }
+  ]
+  
