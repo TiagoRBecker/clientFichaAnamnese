@@ -6,7 +6,7 @@ import Link from "next/link";
 
 const MenuDesktop = () => {
       const { data, isLoading } = useCategories();
-    return (      <div className="hidden md:container mx-auto h-[104px] md:flex items-center justify-between bg-[#EBEBEB]">
+    return (    <div className="hidden lg:flex container mx-auto h-[104px] items-center justify-between bg-[#EBEBEB]">
       
       {/* Logo à esquerda */}
       <div className="w-[30%] flex items-center">
@@ -26,7 +26,7 @@ const MenuDesktop = () => {
           <>
             {data?.map((link: { id: string; name: string }) => (
               <li key={link.id} className="list-none">
-                <Link href={`/categories/${link.id}`}>{link.name}</Link>
+                <Link href={`/categories/${link.id}`} className="w-full truncate">{link.name}</Link>
               </li>
             ))}
           </>

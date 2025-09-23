@@ -2,14 +2,21 @@
 
 import { useCartHook } from "@/utils/Queries/useCart";
 import { ProductsType } from "../Modal";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 type Props = {
   product: ProductsType;
   className?: string;
   text?: string;
 };
 const ButtonAddToCart = ({ product, className, text }: Props) => {
+  const router = useRouter()
+  const { data:session} = useSession()
   const { addTocart } = useCartHook();
   const handleAddTocart = (product: ProductsType) => {
+    if(!session){
+      return router.push("/auth/signin")
+    }
     addTocart.mutate({
       id: product?.id as string,
       image: product.images[0],

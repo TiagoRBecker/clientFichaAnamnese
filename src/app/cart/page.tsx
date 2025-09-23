@@ -36,11 +36,11 @@ const CartPage = () => {
     );
   }
   return (
-    <section className="w-full h-screen bg-[#EBEBEB] py-10">
+    <section className="w-full h-screen bg-[#EBEBEB] py-10 px-4">
       <h1 className="container mx-auto text-3xl text-left">
         Lista de Produtos
       </h1>
-      <div className="container mx-auto grid grid-cols-2 gap-32">
+      <div className="container mx-auto grid grid-cols-1 lg:grid-cols-2 gap-32">
         <div className="w-full flex-col  flex items-center justify-center">
           <div className="w-full  flex items-center justify-center flex-col pt-10 gap-4 ">
             {listCart.data?.cartItems?.map(
@@ -52,12 +52,12 @@ const CartPage = () => {
                   className="w-full h-[55px] flex items-center gap-1 justify-around shadow-sm rounded-md border-gray-100 border-[1px] bg-white px-2"
                   key={index}
                 >
-                  <div className="w-[70%] px-1">
-                    <span className="text-xl truncate  w-full ">
+                  <div className="w-[50%]">
+                    <h2 className="text-xl truncate  ">
                       {docs.name}
-                    </span>
+                    </h2>
                   </div>
-                  <div className="flex-grow flex items-center justify-end gap-3">
+                  <div className="w-[50%] flex items-center justify-end gap-3">
                     <span className="text-[#336DFF] text-xl">
                       {docs.price.toLocaleString("pt-br", {
                         style: "currency",

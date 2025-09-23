@@ -4,12 +4,12 @@ import axios from "axios";
 async function refreshAccessToken(token: any) {
   try {
     const response = await axios.post(
-      "http://localhost:3001/auth/refreshToken/user",
+      `${process.env.API_URL}/auth/refreshToken/user`,
       { refreshToken: token.refreshToken }
     );
 
     const newTokens = response.data;
-    console.log("Token renovado  ");
+
     return {
       ...token,
       accessToken: newTokens.accessToken,
@@ -53,7 +53,7 @@ export const authOptions = {
 
         try {
           const request = await axios.post(
-            `http://localhost:3001/auth/user/signin`,
+            `${process.env.API_URL}/auth/user/signin`,
             dto
           );
 
@@ -72,7 +72,7 @@ export const authOptions = {
       if (account?.provider === "google") {
         try {
           const request = await axios.post(
-            `http://localhost:3001/auth/user/signin/google`,
+            `${process.env.API_URL}/auth/user/signin/google`,
             { token: account.id_token }
           );
 
@@ -81,7 +81,6 @@ export const authOptions = {
           user.accessToken = request.data.accessToken;
           user.refreshToken = request.data.refreshToken;
           user.exp = request.data.exp;
-          console.log(request.data);
 
           return true;
         } catch (error: any) {

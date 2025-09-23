@@ -18,6 +18,7 @@ const useAxiosAuth = () => {
     "products/highligths",
   ];
   const { data: session, status } = useSession();
+
   const isPublicRoute = (url?: string) => {
     if (!url) return false;
     return (
@@ -43,14 +44,6 @@ const useAxiosAuth = () => {
       (response) => response,
 
       async (error) => {
-     
-        if (error.code === "ERR_NETWORK" || error.code === "Network Error") {
-          await signOut({ callbackUrl: "/" });
-          router.push("/error/500");
-
-          return;
-        }
-
         if (session?.user?.error === "RefreshAccessTokenError") {
           await Swal.fire(
             `Sua sessão expirou. Por favor, faça login novamente.`,

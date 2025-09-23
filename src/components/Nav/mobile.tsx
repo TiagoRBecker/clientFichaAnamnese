@@ -10,8 +10,8 @@ import { MenuIcon } from "lucide-react";
 const MenuMobile = () => {
   const { data, isLoading } = useCategories();
   return (
-    <div className="container mx-auto h-[104px] flex items-center justify-between bg-[#EBEBEB] md:hidden ">
-      <div className="w-[30%] flex items-center">
+    <div className="flex  lg:hidden container mx-auto h-[104px] items-center justify-between bg-[#EBEBEB]">
+      <div className="w-[10%] flex items-center">
         <Menu>
           <MenuButton className="w-full h-full  ">
             <MenuIcon size={30}/>
@@ -42,14 +42,14 @@ const MenuMobile = () => {
         </Menu>
       </div>
 
-      <div>
+      <div className="w-[40%]">
         <Link href={"/"}>
           <img src="/Assets/Logo/logo.svg" alt="Logo" />
         </Link>
       </div>
 
       {/* Carrinho + Perfil à direita */}
-      <div className="w-[30%] flex items-center justify-end gap-5">
+      <div className="w-[40%] flex items-center justify-end gap-5 px-2">
         <Perfil />
       </div>
     </div>

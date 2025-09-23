@@ -60,7 +60,7 @@ const Perfil = () => {
           <Menu>
             <MenuButton className="w-full h-full  ">
               <div className="flex items-center gap-3 w-full  justify-end">
-                <p className="hidden md:capitalize font-medium md:flex gap-1 items-center ">
+                <p className="hidden md:capitalize font-medium md:flex gap-1 items-center truncate ">
                   {session?.user?.name}
                   <ChevronDown size={18} />
                 </p>
