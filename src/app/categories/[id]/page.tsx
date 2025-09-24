@@ -1,30 +1,24 @@
 "use client";
 import BannerDescript from "@/components/BannerDescript";
 import CardList from "@/components/cardlist";
-import ModalProduct, { ProductsType } from "@/components/Modal";
+import Loading from "@/components/Loading";
 import NotFound from "@/components/NotFound/indext";
-
-import { useCartStore } from "@/store/cartStore";
 import { useCategoriesId } from "@/utils/Queries/useCategories";
-import { useDisclosure } from "@chakra-ui/react";
 import { useParams } from "next/navigation";
-import React, { useEffect, useState } from "react";
+
 
 const CategoriesPageID = () => {
-  const { isOpen, onOpen, onClose } = useDisclosure();
+
   const params = useParams();
   const id = params.id;
-  const addTocart = useCartStore((state) => state.addToCart);
+
   const { data, isLoading } = useCategoriesId(id as string);
 
-  const [product, setProduct] = useState<ProductsType | null>(null);
 
-  const handleOpenModal = (product: ProductsType) => {
-    onOpen();
-    setProduct(product);
-  };
+
+
   if (isLoading) {
-    return <p>Carregando</p>;
+    return <Loading/>
   }
 
   return (

@@ -1,5 +1,6 @@
 "use client";
 
+import Loading from "@/components/Loading";
 import NotFound from "@/components/NotFound/indext";
 import useAxiosAuth from "@/utils/axios/useAxios";
 import {
@@ -47,11 +48,11 @@ const Libary = () => {
   };
 
   if (isLoading) {
-    return <p>Carregando </p>;
+    return <Loading/>;
   }
 
   return (
-    <section className="mx-auto container h-screen py-20">
+    <section className="mx-auto container h-full md:h-screen py-20">
       <h1 className="text-gray-400 text-2xl">
         Bem vindo a sua biblioteca de documentos{" "}
       </h1>
@@ -65,11 +66,11 @@ const Libary = () => {
             ) => (
               <div
                 key={index}
-                className="max-w-[260px]  h-[380px]  flex flex-col gap-3  shadow-2xl  bg-opacity-50"
+                className="w-full sm:max-w-[260px]  h-[380px]   flex flex-col gap-3  shadow-2xl  bg-opacity-50"
               >
                 <h1 className="text-black w-full truncate p-2">{item.name}</h1>
                 <div className="w-full h-[270px]">
-                  <img src={item.image} alt="Doc" className="w-full h-full " />
+                  <img src={item.image} alt="Doc" className="w-full h-full object-cover " />
                 </div>
                 <div className="flex items-center justify-center flex-grow ">
                   <button

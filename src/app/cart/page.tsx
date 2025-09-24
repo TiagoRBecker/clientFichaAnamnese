@@ -1,16 +1,19 @@
 "use client";
 import ButtonPayment from "@/components/Buttons/createOrderPayment";
+import Loading from "@/components/Loading";
 import Terms from "@/components/terms";
 import { useCartHook } from "@/utils/Queries/useCart";
 import { useTerms } from "@/utils/Queries/useTerms";
 import { Checkbox, useDisclosure } from "@chakra-ui/react";
 
 const CartPage = () => {
-  
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { listCart, removeCart } = useCartHook();
   const { lisTerm } = useTerms();
-  const total = listCart?.data?.cartItems?.reduce((acc:number,item:{price:number})=> acc + item.price,0)
+  const total = listCart?.data?.cartItems?.reduce(
+    (acc: number, item: { price: number }) => acc + item.price,
+    0
+  );
 
   const handleOpenModal = () => {
     onOpen();
@@ -19,14 +22,12 @@ const CartPage = () => {
     removeCart.mutate(id);
   };
 
-  if (listCart.isLoading)
-    return (
-      <div className="w-fullm h-screen flex items-center justify-center text-gray-500">
-        <p>Buscando dados aguarde....</p>
-      </div>
-    );
+  console.log(listCart.data);
 
-  if (listCart.data?.cartItems?.length === 0) {
+  if (listCart.isLoading || lisTerm.isLoading) {
+    return <Loading />;
+  }
+  if (!listCart.data) {
     return (
       <section className="w-full h-screen flex items-center justify-center bg-[#EBEBEB] py-10">
         <p className="text-2xl text-gray-600">
@@ -53,9 +54,7 @@ const CartPage = () => {
                   key={index}
                 >
                   <div className="w-[50%]">
-                    <h2 className="text-xl truncate  ">
-                      {docs.name}
-                    </h2>
+                    <h2 className="text-xl truncate  ">{docs.name}</h2>
                   </div>
                   <div className="w-[50%] flex items-center justify-end gap-3">
                     <span className="text-[#336DFF] text-xl">
@@ -115,7 +114,7 @@ const CartPage = () => {
             </p>
           </div>
           {lisTerm.data ? (
-            <ButtonPayment/>
+            <ButtonPayment />
           ) : (
             <button className="w-full  mt-6 py-4 bg-[#336DFF] text-white rounded-full text-xlflex items-center justify-center">
               Necessário aceitar os termos para finalizar a compra

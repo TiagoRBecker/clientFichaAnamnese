@@ -9,6 +9,7 @@ export const useCategories = () => {
       const response = await axios.get(`/categories`);
       return response.data;
     },
+     refetchInterval: 1000 * 60 * 60 * 2,
   });
   return user;
 };

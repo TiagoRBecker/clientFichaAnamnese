@@ -11,8 +11,7 @@ import { useForm } from "react-hook-form";
 
 const AuthLogin = () => {
   const params = useSearchParams();
- 
-
+  const cb = params.get("callbackUrl") || "/";
   const router = useRouter();
   const [error, setError] = useState<string | null>(null);
   const [pending, setPending] = useState<boolean>(false);
@@ -34,27 +33,23 @@ const AuthLogin = () => {
   });
 
   const onSubmit = handleSubmit(async (data) => {
-    setPending(true);
-    try {
-      const login = await signIn("credentials", {
-        redirect: false,
-        email: data.email,
-        password: data.password,
-      });
 
-      if (login?.error) {
-        setPending(false);
-        return setError(login.error);
-      }
-      return router.push("/");
-    } catch (error) {}
+    const login = await signIn("credentials", {
+      redirect: false,
+      email: data.email,
+      password: data.password,
+      callbackUrl: cb,
+    });
+    if (login?.error) {
+      setError(login.error);
+    }
   });
   const authLoginGoogle = async () => {
     setErrorProvider("");
-    try {
-      await signIn("google", { redirect: true, callbackUrl: "/" });
-      return;
-    } catch (error) {}
+
+    await signIn("google", { redirect: true, callbackUrl: cb });
+
+    return;
   };
   return (
     <div className="w-full h-screen grid grid-cols-2 ">
