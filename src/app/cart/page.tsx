@@ -22,7 +22,7 @@ const CartPage = () => {
     removeCart.mutate(id);
   };
 
-  console.log(listCart.data);
+
 
   if (listCart.isLoading || lisTerm.isLoading) {
     return <Loading />;
@@ -107,7 +107,7 @@ const CartPage = () => {
             <span className="  ">Subtotal</span>
 
             <p className="text-xl">
-              {total?.toLocaleString("pt-br", {
+              {(total / 100)?.toLocaleString("pt-br", {
                 style: "currency",
                 currency: "BRL",
               })}

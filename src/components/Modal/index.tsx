@@ -34,7 +34,6 @@ const ModalProduct = ({ isOpen, onClose, product }: Modal) => {
         isOpen={isOpen}
         onClose={onClose}
         size={"4xl"}
-        
       >
         <ModalOverlay />
         <ModalContent className="py-10">
@@ -73,7 +72,7 @@ const ModalProduct = ({ isOpen, onClose, product }: Modal) => {
                   {product?.name}
                 </h1>
                 <span className="font-bold">
-                  {product?.price?.toLocaleString("pt-br", {
+                  {((product?.price as number) / 100)?.toLocaleString("pt-br", {
                     style: "currency",
                     currency: "BRL",
                   })}
@@ -86,9 +85,11 @@ const ModalProduct = ({ isOpen, onClose, product }: Modal) => {
                       href={"/cart"}
                       className="w-full flex items-center justify-center gap-2 border  border-[#31AF97]  rounded-full text-sm"
                     >
-
-                      <ButtonAddToCart product={product} className=" !text-black " text="Comprar Agora" />
-
+                      <ButtonAddToCart
+                        product={product}
+                        className=" !text-black "
+                        text="Comprar Agora"
+                      />
                     </Link>
                   </div>
                 ) : (
