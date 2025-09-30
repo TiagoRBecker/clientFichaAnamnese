@@ -26,6 +26,18 @@ export type Modal = {
   onClose: () => void;
 };
 const ModalProduct = ({ isOpen, onClose, product }: Modal) => {
+  const createWhatsAppUrl = (product: ProductsType) => {
+    const message = `Olá! Gostaria de solicitar o documento!
+${product?.name} ${(product?.price /100).toLocaleString("pt-br", {
+      style: "currency",
+      currency: "BRL",
+    })}
+Nome da clínica/paciente: [Digite seu nome ..]`;
+    const formattedPhone = 555195391300;
+    const encodedMessage = encodeURIComponent(message);
+    return `https://wa.me/${formattedPhone}?text=${encodedMessage}`;
+  };
+
   return (
     <>
       <Modal
@@ -95,7 +107,7 @@ const ModalProduct = ({ isOpen, onClose, product }: Modal) => {
                 ) : (
                   <div className="flex items-center justify-center gap-2">
                     <Link
-                      href={"/cart"}
+                      href={createWhatsAppUrl(product as ProductsType)}
                       className="flex items-center justify-center gap-2 border border-[#31AF97]  py-2 px-4 rounded-full text-sm"
                     >
                       Soliciar Documento
