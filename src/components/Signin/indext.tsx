@@ -35,7 +35,7 @@ const AuthLogin = () => {
   const onSubmit = handleSubmit(async (data) => {
 
     const login = await signIn("credentials", {
-      redirect: false,
+      redirect: true,
       email: data.email,
       password: data.password,
       callbackUrl: cb,
