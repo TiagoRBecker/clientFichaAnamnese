@@ -12,17 +12,18 @@ type CartItems = {
 
 export const useCartHook = () => {
     const { data: session } = useSession();
+ 
   const axios = useAxiosAuth();
   const queryClient = useQueryClient();
   const listCart = useQuery({
-    queryKey: ["cart-id",session?.user.id],
+    queryKey: ["cart-id",session],
     queryFn: async () => {
       
         const response = await axios.get(`/cart/id`);
         return response.data;
       
     },
-    enabled: !!session?.user.id, 
+    enabled: !!session, 
     retry: false,
   });
   const addTocart = useMutation({
