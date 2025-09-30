@@ -1,5 +1,6 @@
 import { links, utils } from "@/utils/Mock/menu";
 import Link from "next/link";
+import { WhatsAppButton } from "../wpp";
 
 const Footer = () => {
   return (
@@ -61,6 +62,7 @@ const Footer = () => {
           <img src="/Assets/Logo/agion.svg" alt="" />
         </div>
       </div>
+      <WhatsAppButton/>
     </footer>
   );
 };

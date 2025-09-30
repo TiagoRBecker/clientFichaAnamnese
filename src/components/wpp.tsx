@@ -1,32 +1,13 @@
 "use client";
 
-import { ProductsType } from "./Modal";
 
-interface WhatsAppButtonProps {
-  phoneNumber: string;
-  message?: string;
-  className?: string;
-  product?: ProductsType;
-}
 
-export function WhatsAppButton({
-  product,
-  phoneNumber,
-  message = "Olá! Gostaria de mais informações.",
-  className = "",
-}: WhatsAppButtonProps) {
-  const formatPhoneNumber = (phone: string) => {
-    return phone.replace(/\D/g, "");
-  };
-
+export function WhatsAppButton() {
   const createWhatsAppUrl = () => {
-    const message = `Olá! Gostaria de solicitar o documento!
-${product?.name} ${product?.price.toLocaleString("pt-br", {
-      style: "currency",
-      currency: "BRL",
-    })}
+    const message = `Olá! Gostaria de suporte!
+ [Descreva um resumo do que precisa ....]
 Nome da clínica/paciente: [Digite seu nome ..]`;
-    const formattedPhone = formatPhoneNumber(phoneNumber);
+    const formattedPhone = 555195391300;
     const encodedMessage = encodeURIComponent(message);
     return `https://wa.me/${formattedPhone}?text=${encodedMessage}`;
   };
@@ -47,7 +28,7 @@ Nome da clínica/paciente: [Digite seu nome ..]`;
         transition-all duration-300 ease-in-out
         hover:scale-110
         group
-        ${className}
+      
       `}
       aria-label="Enviar mensagem no WhatsApp"
     >

@@ -107,6 +107,7 @@ Nome da clínica/paciente: [Digite seu nome ..]`;
                 ) : (
                   <div className="flex items-center justify-center gap-2">
                     <Link
+                      target="_blank"
                       href={createWhatsAppUrl(product as ProductsType)}
                       className="flex items-center justify-center gap-2 border border-[#31AF97]  py-2 px-4 rounded-full text-sm"
                     >
