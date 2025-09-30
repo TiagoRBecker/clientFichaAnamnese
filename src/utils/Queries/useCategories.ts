@@ -20,7 +20,7 @@ export const useCategoriesId = (id: string) => {
     queryKey: ["category-id"],
     queryFn: async () => {
       const response = await axios.get(`/categories/${id}`);
-      console.log(response.data)
+  
       return response.data;
     },
   });

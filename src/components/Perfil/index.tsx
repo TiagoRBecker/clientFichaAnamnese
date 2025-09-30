@@ -9,15 +9,14 @@ import {
   LogOut,
   ChevronDown,
   ShoppingBag,
-
-  UserRound
+  UserRound,
 } from "lucide-react";
 import { useState } from "react";
 import { useCartHook } from "@/utils/Queries/useCart";
 import Cart from "../checkout";
 const Perfil = () => {
   const { data: session, status } = useSession();
-  const { listCart } = useCartHook(status === "authenticated");
+  const { listCart } = useCartHook();
   const [showCart, setShowCart] = useState(false);
   return (
     <div className="w-full  flex items-center justify-end  ">
@@ -64,8 +63,7 @@ const Perfil = () => {
                   {session?.user?.name}
                   <ChevronDown size={18} />
                 </p>
-                  <p className="capitalize font-medium flex gap-1 items-center md:hidden ">
-                 
+                <p className="capitalize font-medium flex gap-1 items-center md:hidden ">
                   <UserRound size={30} color="#336DFF" strokeWidth={1} />
                 </p>
               </div>

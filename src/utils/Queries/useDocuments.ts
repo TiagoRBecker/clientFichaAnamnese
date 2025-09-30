@@ -39,7 +39,7 @@ export const useUpdateViewsProducts = () => {
       return
     },
    async  onError(error, variables, context) {
-      console.log(error);
+     return 
     },
   });
 };

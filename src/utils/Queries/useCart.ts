@@ -1,6 +1,7 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import useAxiosAuth from "../axios/useAxios";
 import { toast } from "react-toastify";
+import { useSession } from "next-auth/react";
 
 type CartItems = {
   id: string;
@@ -9,18 +10,19 @@ type CartItems = {
   name: string;
 };
 
-export const useCartHook = (enable?: boolean) => {
+export const useCartHook = () => {
+    const { data: session } = useSession();
   const axios = useAxiosAuth();
   const queryClient = useQueryClient();
   const listCart = useQuery({
-    queryKey: ["cart-id"],
+    queryKey: ["cart-id",session?.user.id],
     queryFn: async () => {
       
         const response = await axios.get(`/cart/id`);
         return response.data;
       
     },
-    enabled: enable, // só busca se logado
+    enabled: !!session?.user.id, 
     retry: false,
   });
   const addTocart = useMutation({
@@ -68,7 +70,7 @@ export const useCartHook = (enable?: boolean) => {
       return;
     },
     async onError(error: any, variables, context) {
-      console.log(error);
+     
       return;
     },
   });

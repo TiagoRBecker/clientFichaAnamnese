@@ -1,6 +1,6 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import useAxiosAuth from "../axios/useAxios";
-import  { Axios } from "axios";
+import { Axios } from "axios";
 
 export const useLibraryUserHook = () => {
   const axios = useAxiosAuth();
@@ -14,15 +14,15 @@ export const useLibraryUserHook = () => {
     });
     return user;
   };
-    const downloadDocLibraryUserT = (id:string) => {
+  const downloadDocLibraryUserT = (id: string) => {
     const user = useQuery({
-      queryKey: ["doc",id],
+      queryKey: ["doc", id],
       queryFn: async () => {
         const response = await axios.get(`/library/user`);
         return response.data;
       },
-    
-      enabled:!!id
+
+      enabled: !!id,
     });
     return user;
   };
@@ -30,7 +30,7 @@ export const useLibraryUserHook = () => {
     return useMutation({
       mutationFn: async (id: string) => {
         const response = await axios.post(`/library/user/download/doc/${id}`);
-        console.log(response.data);
+
         const url = window.URL.createObjectURL(new Blob([response.data]));
         const link = document.createElement("a");
         link.href = url;
@@ -59,8 +59,7 @@ export const useLibraryUserHook = () => {
   };
 };
 
-export const doawnloadDocLibraryUser = async (id: string, api:Axios) => {
-  
+export const doawnloadDocLibraryUser = async (id: string, api: Axios) => {
   try {
     const req = await api.get(`library/user/download/doc/${id}`);
     const link = document.createElement("a");
@@ -71,7 +70,6 @@ export const doawnloadDocLibraryUser = async (id: string, api:Axios) => {
     link.remove();
     return req.data;
   } catch (error) {
-    console.log(error);
+    return;
   }
 };
-

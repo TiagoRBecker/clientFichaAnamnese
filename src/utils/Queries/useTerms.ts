@@ -35,7 +35,7 @@ export const useTerms = () => {
       return;
     },
     async onError(error: any, variables, context) {
-      console.log(error);
+      
       return;
     },
   });
