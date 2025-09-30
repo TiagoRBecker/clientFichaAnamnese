@@ -58,7 +58,7 @@ const CartPage = () => {
                   </div>
                   <div className="w-[50%] flex items-center justify-end gap-3">
                     <span className="text-[#336DFF] text-xl">
-                      {docs.price.toLocaleString("pt-br", {
+                      {(docs.price / 100).toLocaleString("pt-br", {
                         style: "currency",
                         currency: "BRL",
                       })}

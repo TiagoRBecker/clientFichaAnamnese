@@ -91,7 +91,7 @@ const Cart = ({ handleCloseMenu }: Props) => {
       <div className="w-full flex items-center justify-between">
         <span className=" font-bold">Total</span>
         <p className="text-[#336DFF] ">
-          {total.toLocaleString("pt-br", {
+          {(total / 100).toLocaleString("pt-br", {
             style: "currency",
             currency: "BRL",
           })}

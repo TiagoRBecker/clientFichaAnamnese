@@ -44,7 +44,15 @@ const ModalProduct = ({ isOpen, onClose, product }: Modal) => {
           <ModalBody>
             <div className="flex flex-col justify-center items-center w-full  gap-4 md:flex-row md:h-[600px]">
               <div className="w-full flex items-center justify-center  md:w-[50%]">
-                {product?.images?.length > 1 ? (
+                {product?.status === "UNAVAILABLE" ? (
+                  <div className="w-full h-full ">
+                    <img
+                      src={"/Assets/Banner/caution.svg"}
+                      alt="Carrousel"
+                      className="w-full h-[590px] "
+                    />
+                  </div>
+                ) : (
                   <Carrousel>
                     {product?.images?.map((img: string, index: number) => (
                       <div className="w-full h-full" key={index}>
@@ -56,14 +64,6 @@ const ModalProduct = ({ isOpen, onClose, product }: Modal) => {
                       </div>
                     ))}
                   </Carrousel>
-                ) : (
-                  <div className="w-full h-full ">
-                    <img
-                      src={product?.images[0]}
-                      alt="Carrousel"
-                      className="w-full h-[590px] "
-                    />
-                  </div>
                 )}
               </div>
 
