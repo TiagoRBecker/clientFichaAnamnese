@@ -51,14 +51,14 @@ const Cart = ({ handleCloseMenu }: Props) => {
                 className="w-full h-[55px] flex items-center gap-1 justify-around shadow-sm rounded-md border-gray-100 border-[1px] "
                 key={index}
               >
-                <div className="w-[70%] px-1">
+                <div className="w-[70%] px-1 truncate ">
                   <span className="text-sm truncate  max-w-[140px]">
                     {item.name}
                   </span>
                 </div>
                 <div className="flex-grow flex items-center gap-3">
                   <span className="text-[#336DFF] text-xs">
-                    {item.price.toLocaleString("pt-br", {
+                    {(item.price / 100).toLocaleString("pt-br", {
                       style: "currency",
                       currency: "BRL",
                     })}
