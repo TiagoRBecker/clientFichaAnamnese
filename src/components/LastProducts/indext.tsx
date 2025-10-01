@@ -7,7 +7,7 @@ const LastProducts = () => {
 
   return (
     <section className="container mx-auto h-full flex  py-36 flex-col  items-center justify-center  ">
-      <h1 className="uppercase text-2xl  text-left w-full">
+      <h1 className="uppercase text-2xl  text-left w-full py-10">
         Novas Atualizações
       </h1>
       <CardList data={data} />
