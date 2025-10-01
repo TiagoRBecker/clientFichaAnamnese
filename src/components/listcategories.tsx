@@ -10,7 +10,7 @@ const ListCategories = () => {
   const { data } = useCategories();
   const categoriesWithProducts = data?.filter(
     (cat: any) => cat.products && cat.products.length > 0
-  );
+  ).slice(0,11);
 
   return (
     <section className="w-full h-full flex flex-col gap-10 py-28">
