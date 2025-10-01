@@ -1,18 +1,20 @@
-module.exports = {
-  eslint: {
-    // Warning: This allows production builds to successfully complete even if
-    // your project has ESLint errors.
-    ignoreDuringBuilds: true,
-  },
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  // ... outras configurações
+
   images: {
-    remotePatterns: [
-      {
+      remotePatterns: [
+    
+    {
         protocol: 'https',
-        hostname: 'res.cloudinary.com',
+        hostname: 'anamnese-news.s3.sa-east-1.amazonaws.com',
         port: '',
-        pathname: '/tiagobecker/**',
+        pathname: '/public/**',
+        search: '',
       },
     ],
+    
   },
- 
-}
+};
+
+module.exports = nextConfig;

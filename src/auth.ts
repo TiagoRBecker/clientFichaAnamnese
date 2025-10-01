@@ -69,7 +69,7 @@ export const authOptions = {
   callbacks: {
     
     async signIn({ user, account, profile, email, credentials }: any) {
-      // Exemplo: só permitir logins via Google
+
       if (account?.provider === "google") {
         try {
           const request = await axios.post(

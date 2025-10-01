@@ -10,13 +10,14 @@ import {
 } from "@chakra-ui/react";
 import Link from "next/link";
 import ButtonAddToCart from "../Buttons/addTocartButton";
+import ProductImage from "../productImage";
 export type ProductsType = {
   id: string;
   name: string;
   price: number;
   description: string;
   status: "AVAILABLE" | "UNAVAILABLE";
-  images: any;
+  images: string[];
   categories: { name: string }[];
 };
 export type Modal = {
@@ -28,7 +29,7 @@ export type Modal = {
 const ModalProduct = ({ isOpen, onClose, product }: Modal) => {
   const createWhatsAppUrl = (product: ProductsType) => {
     const message = `Olá! Gostaria de solicitar o documento!
-${product?.name} ${(product?.price /100).toLocaleString("pt-br", {
+${product?.name} ${(product?.price / 100).toLocaleString("pt-br", {
       style: "currency",
       currency: "BRL",
     })}
@@ -54,32 +55,12 @@ Nome da clínica/paciente: [Digite seu nome ..]`;
           </ModalHeader>
           <ModalCloseButton />
           <ModalBody>
-            <div className="flex flex-col justify-center items-center w-full  gap-4 md:flex-row md:h-[600px]">
-              <div className="w-full flex items-center justify-center  md:w-[50%]">
-                {product?.status === "UNAVAILABLE" ? (
-                  <div className="w-full h-full ">
-                    <img
-                      src={"/Assets/Banner/caution.svg"}
-                      alt="Carrousel"
-                      className="w-full h-[590px] "
-                    />
-                  </div>
-                ) : (
-                  <Carrousel>
-                    {product?.images?.map((img: string, index: number) => (
-                      <div className="w-full h-full" key={index}>
-                        <img
-                          src={img}
-                          alt="Carrousel"
-                          className="w-full h-full "
-                        />
-                      </div>
-                    ))}
-                  </Carrousel>
-                )}
+            <div className="grid  grid-cols-1 h-full gap-2 lg:grid-cols-2 lg:h-[500px]">
+              <div className="w-full h-full flex items-center justify-center  ">
+                <ProductImage products={product as ProductsType} />
               </div>
 
-              <div className="w-full mt-4  flex flex-col gap-5 md:w-[50%]">
+              <div className="w-full   flex flex-col gap-5 ">
                 <h1 className="text-[#336DFF] uppercase font-bold">
                   {product?.name}
                 </h1>
@@ -125,3 +106,4 @@ Nome da clínica/paciente: [Digite seu nome ..]`;
 };
 
 export default ModalProduct;
+//flex flex-col justify-center items-center w-full  gap-4 md:flex-row md:h-[600px]
