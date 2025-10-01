@@ -19,4 +19,5 @@ const Carrousel = ({ children }: Carrousel) => {
   return <Slider {...settings} className="w-full h-full" >{children}</Slider>;
 };
 
+
 export default Carrousel;

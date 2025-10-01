@@ -3,7 +3,7 @@ import useAxiosAuth from "../axios/useAxios";
 
 export const useCategories = () => {
   const axios = useAxiosAuth();
-  const user = useQuery({
+  const categories = useQuery({
     queryKey: ["categories"],
     queryFn: async () => {
       const response = await axios.get(`/categories`);
@@ -11,7 +11,7 @@ export const useCategories = () => {
     },
      refetchInterval: 1000 * 60 * 60 * 2,
   });
-  return user;
+  return categories;
 };
 
 export const useCategoriesId = (id: string) => {

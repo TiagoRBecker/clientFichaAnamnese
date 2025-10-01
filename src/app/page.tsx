@@ -2,6 +2,7 @@
 import Banner from "@/components/Banner";
 import DocsEmphasis from "@/components/Docs";
 import LastProducts from "@/components/LastProducts/indext";
+import ListCategories from "@/components/listcategories";
 import Testimonials from "@/components/Testimonials";
 
 export default function Home() {
@@ -9,7 +10,7 @@ export default function Home() {
     <main>
       <Banner />
       <LastProducts />
-
+      {/*
       <section className="w-full  h-[335px] p-6 bg-[#336DFF] lg:h-[450px] ">
         <div className="w-full  grid grid-cols-1 md:grid-cols-2">
           <div className="hidden  lg:flex items-center justify-center w-full">
@@ -33,7 +34,10 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <DocsEmphasis />
+      */}
+      <ListCategories />
+   
+
       <section className="w-full h-full  flex items-center justify-center">
         <div className="container  p-6 bg-[#336DFF] rounded-md mx-auto h-[400px]">
           <div className="w-full h-full grid grid-cols-1 md:grid-cols-2">

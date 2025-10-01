@@ -6,7 +6,7 @@ const LastProducts = () => {
   const { data } = useLastProducts();
 
   return (
-    <section className="container mx-auto h-full flex flex-col p-10 items-center justify-center  ">
+    <section className="container mx-auto h-full flex  py-36 flex-col  items-center justify-center  ">
       <h1 className="uppercase text-2xl  text-left w-full">
         Novas Atualizações
       </h1>
