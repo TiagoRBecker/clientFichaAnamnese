@@ -14,42 +14,20 @@ import {
 import { useEffect, useState } from "react";
 import { useCartHook } from "@/utils/Queries/useCart";
 import Cart from "../checkout";
+
 const Perfil = () => {
-    const { data: session, status } = useSession();
+  const { data: session, status } = useSession();
 
   const [showCart, setShowCart] = useState(false);
   useEffect(() => {}, [status]);
-    const { listCart } = useCartHook(status === "authenticated");
+  const { listCart } = useCartHook();
 
+  if(listCart.isLoading) return null
   return (
     <div className="w-full  flex items-center justify-end  ">
-      {status === "loading" && (
-        <p className="text-gray-400 text-left">carregando ...</p>
-      )}
-      {status === "unauthenticated" && (
-        <Link
-          href={"/auth/signin"}
-          className="py-2 px-6 rounded-3xl flex items-center gap-2 border-[#336DFF] border text-[#336DFF] text-sm text-left"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={1.5}
-            stroke="currentColor"
-            className="w-4 h-4"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
-            />
-          </svg>
-          Login
-        </Link>
-      )}
-      {status === "authenticated" && (
-        <>
+    
+    
+    
           <div className="flex items-center gap-3">
             <div
               className="relative cursor-pointer flex items-center justify-end   "
@@ -113,8 +91,8 @@ const Perfil = () => {
           {listCart?.data?.cartItems?.length > 0 && showCart && (
             <Cart handleCloseMenu={() => setShowCart(false)} />
           )}
-        </>
-      )}
+      
+  
     </div>
   );
 };

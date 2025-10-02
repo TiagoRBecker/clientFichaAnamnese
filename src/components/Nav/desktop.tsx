@@ -1,15 +1,15 @@
-"use client"
+"use client";
 import { useCategories } from "@/utils/Queries/useCategories";
 
 import Perfil from "../Perfil";
 import Link from "next/link";
-
+import { useSession } from "next-auth/react";
 
 const MenuDesktop = () => {
-
-      const { data, isLoading } = useCategories();
-    return (    <div className="hidden lg:flex container mx-auto h-[104px] items-center justify-between bg-[#EBEBEB]">
-      
+  const { status } = useSession();
+  const { data, isLoading } = useCategories();
+  return (
+    <div className="hidden lg:flex container mx-auto h-[104px] items-center justify-between bg-[#EBEBEB]">
       {/* Logo à esquerda */}
       <div className="w-[30%] flex items-center">
         <Link href={"/"}>
@@ -28,7 +28,12 @@ const MenuDesktop = () => {
           <>
             {data?.map((link: { id: string; name: string }) => (
               <li key={link.id} className="list-none">
-                <Link href={`/categories/${link.id}`} className="w-full truncate">{link.name}</Link>
+                <Link
+                  href={`/categories/${link.id}`}
+                  className="w-full truncate"
+                >
+                  {link.name}
+                </Link>
               </li>
             ))}
           </>
@@ -37,10 +42,33 @@ const MenuDesktop = () => {
 
       {/* Carrinho + Perfil à direita */}
       <div className="w-[30%] flex items-center justify-end gap-5">
-        <Perfil />
+        {status === "loading" && <p>carregando</p>}
+        {status === "unauthenticated" && (
+          <Link
+            href={"/auth/signin"}
+            className="py-2 px-6 rounded-3xl flex items-center gap-2 border-[#336DFF] border text-[#336DFF] text-sm text-left"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={1.5}
+              stroke="currentColor"
+              className="w-4 h-4"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z"
+              />
+            </svg>
+            Login
+          </Link>
+        )}
+        {status === "authenticated" && <Perfil />}
       </div>
-    
-    </div>);
-}
- 
+    </div>
+  );
+};
+
 export default MenuDesktop;

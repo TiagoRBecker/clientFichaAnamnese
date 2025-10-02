@@ -29,13 +29,12 @@ const useAxiosAuth = () => {
   };
   useEffect(() => {
     if (status !== "authenticated" || !session?.user?.accessToken) {
-     
       return;
     }
     const requestIntercept = api.interceptors.request.use(
       async (config) => {
         const session = await getSession();
-     
+
         if (!isPublicRoute(config.url) && session?.user?.accessToken) {
           config.headers.Authorization = `Bearer ${session.user.accessToken}`;
         }

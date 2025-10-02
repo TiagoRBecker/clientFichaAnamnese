@@ -10,7 +10,7 @@ type CartItems = {
   name: string;
 };
 
-export const useCartHook = (enabled = true) => {
+export const useCartHook = () => {
   const axios = useAxiosAuth();
   const queryClient = useQueryClient();
   const listCart = useQuery({
@@ -20,7 +20,7 @@ export const useCartHook = (enabled = true) => {
       return response.data;
     },
     retry:false,
-    enabled,
+  
     refetchOnWindowFocus: false,
   });
   const addTocart = useMutation({
