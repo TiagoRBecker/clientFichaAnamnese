@@ -1,10 +1,25 @@
-import {  useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery } from "@tanstack/react-query";
 import useAxiosAuth from "../axios/useAxios";
 import { api } from "../axios/axios";
 
+export const useAllDocs = (search: string) => {
+  console.log(search);
+  const user = useQuery({
+    queryKey: ["docs-all", search],
+    queryFn: async () => {
+      const response = await api.get(`/products/search`, {
+        params: {
+          q: search,
+        },
+      });
 
+      return response.data;
+    },
+    enabled: !!search,
+  });
+  return user;
+};
 export const useLastProducts = () => {
-
   const user = useQuery({
     queryKey: ["docs-last"],
     queryFn: async () => {
@@ -16,7 +31,6 @@ export const useLastProducts = () => {
 };
 
 export const useHighLigthProducts = () => {
-
   const user = useQuery({
     queryKey: ["docs-higgh"],
     queryFn: async () => {
@@ -27,21 +41,18 @@ export const useHighLigthProducts = () => {
   return user;
 };
 
-
-
 export const useUpdateViewsProducts = () => {
-   
   return useMutation({
-    mutationFn: async (id:string) => {
+    mutationFn: async (id: string) => {
       const response = await api.put(`/products/views/${id}`);
-   
-     return response.data
+
+      return response.data;
     },
     async onSuccess(data, variables, context) {
-      return
+      return;
     },
-   async  onError(error, variables, context) {
-     return 
+    async onError(error, variables, context) {
+      return;
     },
   });
 };

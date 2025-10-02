@@ -9,7 +9,7 @@ import Footer from "@/components/Footer";
 import { SessionProvider } from "next-auth/react";
 import { usePathname } from "next/navigation";
 import { ReactQueryProvider } from "./reactQueryProvider";
-
+import { Suspense } from "react";
 
 export default function RootLayout({
   children,
@@ -25,7 +25,7 @@ export default function RootLayout({
           <body>
             <ChakraUI>
               {!authLayout && <Header />}
-              {children}
+              <Suspense fallback={null}> {children}</Suspense>
             </ChakraUI>
 
             <ToastContainer />
