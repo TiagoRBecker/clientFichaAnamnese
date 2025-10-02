@@ -15,7 +15,7 @@ import { useEffect, useState } from "react";
 import { useCartHook } from "@/utils/Queries/useCart";
 import Cart from "../checkout";
 type Props = {
-name:string
+name?:string
 }
 const Perfil = ({name}:Props) => {
  
