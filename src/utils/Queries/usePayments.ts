@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import useAxiosAuth from "../axios/useAxios";
-import { toast } from "react-toastify";
+import { api } from "../axios/axios";
 ;
 
 export const usePayments  = (id?: string) => {
@@ -16,7 +16,7 @@ export const usePayments  = (id?: string) => {
     });
   const createOrderPayment = useMutation({
     mutationFn: async () => {
-      const response = await axios.post(`/create-order/payment`);
+      const response = await api.post(`/create-order/payment`);
    
       return response.data;
 

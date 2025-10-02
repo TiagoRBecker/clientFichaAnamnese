@@ -1,7 +1,9 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import useAxiosAuth from "../axios/useAxios";
+
 import { toast } from "react-toastify";
 import { useSession } from "next-auth/react";
+import { api } from "../axios/axios";
+
 
 type CartItems = {
   id: string;
@@ -11,12 +13,12 @@ type CartItems = {
 };
 
 export const useCartHook = () => {
-  const axios = useAxiosAuth();
+
   const queryClient = useQueryClient();
   const listCart = useQuery({
     queryKey: ["cart-id"],
     queryFn: async () => {
-      const response = await axios.get(`/cart/id`);
+      const response = await api.get(`/cart/id`);
       return response.data;
     },
     retry:false,
@@ -25,7 +27,7 @@ export const useCartHook = () => {
   });
   const addTocart = useMutation({
     mutationFn: async ({ ...cart }: CartItems) => {
-      const response = await axios.put(`/cart/update`, cart);
+      const response = await api.put(`/cart/update`, cart);
 
       return response.data;
     },
@@ -49,7 +51,7 @@ export const useCartHook = () => {
   });
   const removeCart = useMutation({
     mutationFn: async (id: string) => {
-      const response = await axios.delete(`/cart/${id}`);
+      const response = await api.delete(`/cart/${id}`);
 
       return response.data;
     },

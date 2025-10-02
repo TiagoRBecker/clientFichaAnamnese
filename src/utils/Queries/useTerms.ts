@@ -1,21 +1,22 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import useAxiosAuth from "../axios/useAxios";
+import useapiAuth from "../axios/useAxios";
 import { toast } from "react-toastify";
+import { api } from "../axios/axios";
 ;
 
 export const useTerms = () => {
-  const axios = useAxiosAuth();
+
   const queryClient = useQueryClient()
   const lisTerm = useQuery({
     queryKey: ["terms"],
     queryFn: async () => {
-      const response = await axios.get(`/terms`);
+      const response = await api.get(`/terms`);
       return response.data;
     },
   });
   const accepted = useMutation({
     mutationFn: async () => {
-      const response = await axios.post(`/accept`);
+      const response = await api.post(`/accept`);
    
       return response.data;
 

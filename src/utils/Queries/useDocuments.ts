@@ -1,12 +1,14 @@
 import {  useMutation, useQuery } from "@tanstack/react-query";
 import useAxiosAuth from "../axios/useAxios";
+import { api } from "../axios/axios";
+
 
 export const useLastProducts = () => {
-  const axios = useAxiosAuth();
+
   const user = useQuery({
     queryKey: ["docs-last"],
     queryFn: async () => {
-      const response = await axios.get(`/products/last`);
+      const response = await api.get(`/products/last`);
       return response.data;
     },
   });
@@ -14,11 +16,11 @@ export const useLastProducts = () => {
 };
 
 export const useHighLigthProducts = () => {
-  const axios = useAxiosAuth();
+
   const user = useQuery({
     queryKey: ["docs-higgh"],
     queryFn: async () => {
-      const response = await axios.get(`/products/highligths`);
+      const response = await api.get(`/products/highligths`);
       return response.data;
     },
   });
@@ -28,10 +30,10 @@ export const useHighLigthProducts = () => {
 
 
 export const useUpdateViewsProducts = () => {
-     const axios = useAxiosAuth();
+   
   return useMutation({
     mutationFn: async (id:string) => {
-      const response = await axios.put(`/products/views/${id}`);
+      const response = await api.put(`/products/views/${id}`);
    
      return response.data
     },

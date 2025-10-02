@@ -1,14 +1,14 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
-import useAxiosAuth from "../axios/useAxios";
+
 import { Axios } from "axios";
+import { api } from "../axios/axios";
 
 export const useLibraryUserHook = () => {
-  const axios = useAxiosAuth();
   const libraryByUser = () => {
     const user = useQuery({
       queryKey: ["library-user"],
       queryFn: async () => {
-        const response = await axios.get(`/library/user`);
+        const response = await api.get(`/library/user`);
         return response.data;
       },
     });
@@ -18,7 +18,7 @@ export const useLibraryUserHook = () => {
     const user = useQuery({
       queryKey: ["doc", id],
       queryFn: async () => {
-        const response = await axios.get(`/library/user`);
+        const response = await api.get(`/library/user`);
         return response.data;
       },
 
@@ -29,7 +29,7 @@ export const useLibraryUserHook = () => {
   const downloadDocLibraryUser = () => {
     return useMutation({
       mutationFn: async (id: string) => {
-        const response = await axios.post(`/library/user/download/doc/${id}`);
+        const response = await api.post(`/library/user/download/doc/${id}`);
 
         const url = window.URL.createObjectURL(new Blob([response.data]));
         const link = document.createElement("a");
