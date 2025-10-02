@@ -11,7 +11,7 @@ const Cart = ({ handleCloseMenu }: Props) => {
   useEffect(() => {
   
   }, [status]);
-  const { listCart, removeCart } = useCartHook();
+  const { listCart, removeCart } = useCartHook(status === "authenticated");
 
 
   const total = listCart.data.cartItems.reduce(

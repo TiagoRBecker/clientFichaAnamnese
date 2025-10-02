@@ -5,9 +5,9 @@ import { useEffect } from "react";
 import { api } from "./axiosConfig";
 import { useRouter } from "next/navigation";
 import Swal from "sweetalert2";
+import { getSession } from "next-auth/react";
 
 const useAxiosAuth = () => {
-  const router = useRouter();
   const publicRoutes = [
     "user/signup",
     "user/signin",
@@ -28,9 +28,14 @@ const useAxiosAuth = () => {
     );
   };
   useEffect(() => {
-    if (status === "loading") return;
+    if (status !== "authenticated" || !session?.user?.accessToken) {
+     
+      return;
+    }
     const requestIntercept = api.interceptors.request.use(
       async (config) => {
+        const session = await getSession();
+     
         if (!isPublicRoute(config.url) && session?.user?.accessToken) {
           config.headers.Authorization = `Bearer ${session.user.accessToken}`;
         }
@@ -44,6 +49,7 @@ const useAxiosAuth = () => {
       (response) => response,
 
       async (error) => {
+        const session = await getSession();
         if (session?.user?.error === "RefreshAccessTokenError") {
           await Swal.fire(
             `Sua sessão expirou. Por favor, faça login novamente.`,

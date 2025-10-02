@@ -10,21 +10,17 @@ type CartItems = {
   name: string;
 };
 
-export const useCartHook = () => {
-
- 
+export const useCartHook = (enabled = true) => {
   const axios = useAxiosAuth();
   const queryClient = useQueryClient();
   const listCart = useQuery({
-    queryKey: ["cart-id",],
+    queryKey: ["cart-id"],
     queryFn: async () => {
-      
-        const response = await axios.get(`/cart/id`);
-        return response.data;
-      
+      const response = await axios.get(`/cart/id`);
+      return response.data;
     },
-  
-    retry: false,
+    retry:false,
+    enabled,
     refetchOnWindowFocus: false,
   });
   const addTocart = useMutation({
@@ -72,7 +68,6 @@ export const useCartHook = () => {
       return;
     },
     async onError(error: any, variables, context) {
-     
       return;
     },
   });

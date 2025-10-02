@@ -4,12 +4,13 @@ import Loading from "@/components/Loading";
 import Terms from "@/components/terms";
 import { useCartHook } from "@/utils/Queries/useCart";
 import { useTerms } from "@/utils/Queries/useTerms";
-import { Checkbox, useDisclosure } from "@chakra-ui/react";
+import { Checkbox, ListItem, useDisclosure } from "@chakra-ui/react";
+import { useSession } from "next-auth/react";
 
 const CartPage = () => {
-  
+  const {status} = useSession()
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const { listCart, removeCart } = useCartHook();
+  const { listCart, removeCart } = useCartHook(status === "authenticated");
   const { lisTerm } = useTerms();
   const total = listCart?.data?.cartItems?.reduce(
     (acc: number, item: { price: number }) => acc + item.price,
@@ -22,8 +23,6 @@ const CartPage = () => {
   const handleRemovecart = (id: string) => {
     removeCart.mutate(id);
   };
-
-
 
   if (listCart.isLoading || lisTerm.isLoading) {
     return <Loading />;

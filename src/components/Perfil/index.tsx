@@ -19,7 +19,7 @@ const Perfil = () => {
 
   const [showCart, setShowCart] = useState(false);
   useEffect(() => {}, [status]);
-    const { listCart } = useCartHook();
+    const { listCart } = useCartHook(status === "authenticated");
 
   return (
     <div className="w-full  flex items-center justify-end  ">
