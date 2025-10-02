@@ -24,7 +24,7 @@ const CategoriesPageID = () => {
   return (
     <section className="w-full flex items-center justify-center  flex-col ">
       <div className="w-full  bg-[#EBEBEB] h-[200px]"></div>
-      <div className="-mt-24 w-full">
+      <div className="-mt-24 w-full mb-10">
         <BannerDescript
           title={data?.name as string}
           descript="A ficha de anamnese é um documento essencial em qualquer atendimento clínico, sendo a base para o diagnóstico e acompanhamento de pacientes. Nela, o profissional de saúde coleta uma série de informações importantes sobre o histórico médico do paciente, estilo de vida, hábitos diários, além de queixas atuais."

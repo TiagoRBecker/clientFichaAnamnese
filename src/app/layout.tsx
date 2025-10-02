@@ -13,7 +13,13 @@ import {
 
 } from "@tanstack/react-query";
 import { usePathname } from "next/navigation";
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions:{
+    queries:{
+      refetchOnWindowFocus:false
+    }
+  }
+});
 
 export default function RootLayout({
   children,
