@@ -11,19 +11,19 @@ type CartItems = {
 };
 
 export const useCartHook = () => {
-    const { data: session } = useSession();
+
  
   const axios = useAxiosAuth();
   const queryClient = useQueryClient();
   const listCart = useQuery({
-    queryKey: ["cart-id",session],
+    queryKey: ["cart-id",],
     queryFn: async () => {
       
         const response = await axios.get(`/cart/id`);
         return response.data;
       
     },
-    enabled: !!session, 
+  
     retry: false,
     refetchOnWindowFocus: false,
   });

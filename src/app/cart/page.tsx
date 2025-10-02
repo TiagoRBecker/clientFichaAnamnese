@@ -7,6 +7,7 @@ import { useTerms } from "@/utils/Queries/useTerms";
 import { Checkbox, useDisclosure } from "@chakra-ui/react";
 
 const CartPage = () => {
+  
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { listCart, removeCart } = useCartHook();
   const { lisTerm } = useTerms();

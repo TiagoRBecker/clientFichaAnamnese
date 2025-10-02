@@ -4,7 +4,9 @@ import { useCategories } from "@/utils/Queries/useCategories";
 import Perfil from "../Perfil";
 import Link from "next/link";
 
+
 const MenuDesktop = () => {
+
       const { data, isLoading } = useCategories();
     return (    <div className="hidden lg:flex container mx-auto h-[104px] items-center justify-between bg-[#EBEBEB]">
       
