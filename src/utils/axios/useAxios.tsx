@@ -17,7 +17,7 @@ const useAxiosAuth = () => {
     "/products/last",
     "products/highligths",
   ];
-  const { data: session, status } = useSession();
+
 
   const isPublicRoute = (url?: string) => {
     if (!url) return false;
@@ -28,9 +28,7 @@ const useAxiosAuth = () => {
     );
   };
   useEffect(() => {
-    if (status !== "authenticated" || !session?.user?.accessToken) {
-      return;
-    }
+ 
     const requestIntercept = api.interceptors.request.use(
       async (config) => {
         const session = await getSession();
@@ -68,7 +66,7 @@ const useAxiosAuth = () => {
       api.interceptors.request.eject(requestIntercept);
       api.interceptors.response.eject(responseIntercept);
     };
-  }, [session]);
+  }, []);
 
   return api;
 };

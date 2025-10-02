@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useSession } from "next-auth/react";
 
 const MenuDesktop = () => {
-  const { status } = useSession();
+  const { status, data: session } = useSession();
   const { data, isLoading } = useCategories();
   return (
     <div className="hidden lg:flex container mx-auto h-[104px] items-center justify-between bg-[#EBEBEB]">
@@ -65,7 +65,7 @@ const MenuDesktop = () => {
             Login
           </Link>
         )}
-        {status === "authenticated" && <Perfil />}
+        {status === "authenticated" && <Perfil name={session.user.name as string} />}
       </div>
     </div>
   );

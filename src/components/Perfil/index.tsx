@@ -14,16 +14,14 @@ import {
 import { useEffect, useState } from "react";
 import { useCartHook } from "@/utils/Queries/useCart";
 import Cart from "../checkout";
-
-const Perfil = () => {
-  const { data: session, status } = useSession();
+type Props = {
+name:string
+}
+const Perfil = ({name}:Props) => {
+ 
   const { listCart } = useCartHook();
   const [showCart, setShowCart] = useState(false);
-  useEffect(() => {
-    if (status === "authenticated") {
-      listCart.refetch();
-    }
-  }, [status ,listCart.data]);
+
 
   if (listCart.isLoading) return null;
   return (
@@ -42,7 +40,8 @@ const Perfil = () => {
           <MenuButton className="w-full h-full  ">
             <div className="flex items-center gap-3 w-full  justify-end">
               <p className="hidden md:capitalize font-medium md:flex gap-1 items-center truncate ">
-                {session?.user?.name}
+                
+                {name}
                 <ChevronDown size={18} />
               </p>
               <p className="capitalize font-medium flex gap-1 items-center md:hidden ">
