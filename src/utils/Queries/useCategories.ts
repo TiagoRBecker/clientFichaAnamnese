@@ -10,6 +10,7 @@ export const useCategories = () => {
       return response.data;
     },
      refetchInterval: 1000 * 60 * 60 * 2,
+     refetchOnWindowFocus: false,
   });
   return categories;
 };

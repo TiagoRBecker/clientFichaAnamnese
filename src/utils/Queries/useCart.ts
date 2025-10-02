@@ -25,6 +25,7 @@ export const useCartHook = () => {
     },
     enabled: !!session, 
     retry: false,
+    refetchOnWindowFocus: false,
   });
   const addTocart = useMutation({
     mutationFn: async ({ ...cart }: CartItems) => {

@@ -7,19 +7,9 @@ import "react-toastify/dist/ReactToastify.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { SessionProvider } from "next-auth/react";
-import {
-  QueryClient,
-  QueryClientProvider,
-
-} from "@tanstack/react-query";
 import { usePathname } from "next/navigation";
-const queryClient = new QueryClient({
-  defaultOptions:{
-    queries:{
-      refetchOnWindowFocus:false
-    }
-  }
-});
+import { ReactQueryProvider } from "./reactQueryProvider";
+
 
 export default function RootLayout({
   children,
@@ -29,7 +19,7 @@ export default function RootLayout({
   const pathName = usePathname();
   const authLayout = pathName.startsWith("/auth");
   return (
-    <QueryClientProvider client={queryClient}>
+    <ReactQueryProvider>
       <SessionProvider>
         <html lang="pt-br">
           <body>
@@ -43,6 +33,6 @@ export default function RootLayout({
           </body>
         </html>
       </SessionProvider>
-    </QueryClientProvider>
+    </ReactQueryProvider>
   );
 }

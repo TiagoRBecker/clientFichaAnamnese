@@ -11,7 +11,7 @@ const ListCategories = () => {
   const categoriesWithProducts = data?.filter(
     (cat: any) => cat.products && cat.products.length > 0
   );
-console.log(categoriesWithProducts)
+
   return (
     <section className="w-full h-full flex flex-col gap-10 py-28">
       {categoriesWithProducts?.map(
@@ -51,7 +51,7 @@ console.log(categoriesWithProducts)
                 </div>
               </div>
               <h1 className="text-4xl container mx-auto">{cats.name}</h1>
-              <CardList data={cats?.products.slice(0,12)} name={cats.name} />
+              <CardList data={cats?.products.slice(0, 12)} name={cats.name} />
             </React.Fragment>
           );
         }
