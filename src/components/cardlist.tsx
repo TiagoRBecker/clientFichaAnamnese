@@ -24,8 +24,8 @@ const CardList = ({ data, name }: Props) => {
   };
 
   return (
-    <div className="w-full h-full pb-20">
-      <div className="container  gap-10 mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 ">
+    <div className="w-full h-full pb-20  px-2">
+      <div className="container  gap-10 mx-auto grid grid-cols-1  sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 ">
         {data?.map((products, index) => (
           <CardBox
             product={products}

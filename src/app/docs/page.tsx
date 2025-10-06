@@ -16,8 +16,8 @@ const AllDocs = () => {
   if (!data.length) return <NotFound />;
   return (
     <Suspense fallback={""}>
-      <div className="w-full min-h-screen">
-        <div className="container mx-auto">
+      <div className="w-full min-h-screen  px-2 ">
+        <div className="px-4 container mx-auto ">
           <h1 className="py-10">
             Busca realizada para{" "}
             <span className="text-2xl text-gray-500 uppercase">{name}</span>

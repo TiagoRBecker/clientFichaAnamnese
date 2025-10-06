@@ -35,10 +35,10 @@ const CardBox = ({product ,categoryName,onOpen}: Props) => {
 
       <p className="text-center text-black truncate w-full md:text-xl md:text-left ">{product.name}</p>
     
-      <div className="flex flex-col items-center gap-4 md:flex-row   ">
+      <div className="flex flex-col items-center gap-4 lg:flex-row   ">
         {RenderButton(product.status)}
-        <button className=" w-full flex items-center gap-2 h-10 border border-[#31AF97]  justify-center  rounded-full text-[10px]" onClick={()=>{onOpen(product)}}>
-         <Zap size={15}  color="#336DFF" strokeWidth={1}/>
+        <button className=" w-full flex items-center gap-2 h-10  border border-[#31AF97]   justify-center  rounded-full text-[10px]" onClick={()=>{onOpen(product)}}>
+         <Zap size={15}  color="#336DFF" strokeWidth={1} className="hidden lg:block"/>
           Visualização Rápida
         </button>
       </div>

@@ -13,7 +13,7 @@ const ListCategories = () => {
   );
 
   return (
-    <section className="w-full h-full flex flex-col gap-10 py-28">
+    <section className="w-full h-full flex flex-col gap-10 py-28  ">
       {categoriesWithProducts?.map(
         (
           cats: {
@@ -27,7 +27,7 @@ const ListCategories = () => {
           const randomIndex = Math.floor(Math.random() * Images.length);
           return (
             <React.Fragment key={index}>
-              <div className="w-full  h-[335px]  bg-[#336DFF] lg:h-[370px] ">
+              <div className="w-full  h-full p-4 bg-[#336DFF] lg:h-[370px] ">
                 <div className="w-full  grid grid-cols-1 md:grid-cols-2">
                   <div className="hidden  lg:flex items-center justify-center w-full relative h-[350px]">
                     <img
@@ -36,7 +36,7 @@ const ListCategories = () => {
                       className="absolute  left-0 w-full h-[430px] object-contain top-[calc(370px-430px)]"
                     />
                   </div>
-                  <div className="w-full flex   flex-col gap-4 items-start justify-center  max-w-[488px]  mx-auto">
+                  <div className="w-full flex   flex-col gap-4 items-start justify-center   max-w-[488px]  mx-auto">
                     <h2 className="text-2xl text-white  ">{cats.name}</h2>
                     <p className="text-white max-h-[200px] line-clamp-3">
                       {cats.description}
@@ -50,7 +50,7 @@ const ListCategories = () => {
                   </div>
                 </div>
               </div>
-              <h1 className="text-4xl container mx-auto">{cats.name}</h1>
+              <h1 className="text-4xl pl-2 container mx-auto">{cats.name}</h1>
               <CardList data={cats?.products.slice(0, 12)} name={cats.name} />
             </React.Fragment>
           );

@@ -10,20 +10,21 @@ const Header = () => {
   const handleSearch = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (!name) return;
      if(event.key === "Enter"){
-      router.push(`/docs?search=${name}`)
+      router.replace(`/docs?search=${name}`)
+      setName("")
       return
      }
   };
   return (
     <header className="w-full h-full bg-[#EBEBEB]">
       <div className="w-full h-[70px]  mx-auto flex items-center justify-around bg-[#336DFF]">
-        <div className="hidden md:container mx-auto md:flex items-center">
-          <div className="w-[30%]">
+        <div className="container mx-auto flex items-center">
+          <div className="hidden md:w-[30%] md:block">
             <h1 className="text-sm text-white opacity-100">
               ACESSORIA JURÍDICA | GUEDES BAMPI ADVOCACIA
             </h1>
           </div>
-          <div className="w-[40%] mx-auto ">
+          <div className="w-[90%] mx-auto flex md:w-[40%] ">
             <input
               className="w-full rounded-md outline-none h-10 pl-4 px-2 "
               placeholder="Buscar documentos, categorias "
@@ -33,7 +34,7 @@ const Header = () => {
               onKeyDown={handleSearch}
             />
           </div>
-          <div className="w-[30%] flex items-center justify-end gap-4 ">
+          <div className="hidden md:flex items-center justify-end gap-4 w-[30%] ">
             <Facebook size={20} color="white" />
             <Instagram size={20} color="white" />
             <Twitter size={20} color="white" />

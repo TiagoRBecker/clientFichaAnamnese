@@ -4,8 +4,21 @@ import { useCategories } from "@/utils/Queries/useCategories";
 import Perfil from "../Perfil";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
+import { ChevronDownIcon } from "lucide-react";
+import {
+  Button,
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuList,
+  useDisclosure,
+} from "@chakra-ui/react";
 
 const MenuDesktop = () => {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+  const handleTeste = () => {
+    console.log("ij");
+  };
   const { status, data: session } = useSession();
   const { data, isLoading } = useCategories();
   return (
@@ -25,18 +38,22 @@ const MenuDesktop = () => {
         {isLoading ? (
           <p>Carregando ..</p>
         ) : (
-          <>
-            {data?.map((link: { id: string; name: string }) => (
-              <li key={link.id} className="list-none">
-                <Link
-                  href={`/categories/${link.id}`}
-                  className="w-full truncate"
-                >
-                  {link.name}
-                </Link>
-              </li>
-            ))}
-          </>
+          <div className="flex items-center gap-3">
+         
+           
+                {data?.map((link: { id: string; name: string }) => (
+                  <li key={link.id} className="list-none">
+                    <Link
+                      href={`/categories/${link.id}`}
+                      className="w-full truncate"
+                    >
+                      {link.name}
+                    </Link>
+                  </li>
+                ))}
+              
+            
+          </div>
         )}
       </div>
 
@@ -65,7 +82,9 @@ const MenuDesktop = () => {
             Login
           </Link>
         )}
-        {status === "authenticated" && <Perfil name={session.user.name as string} />}
+        {status === "authenticated" && (
+          <Perfil name={session.user.name as string} />
+        )}
       </div>
     </div>
   );

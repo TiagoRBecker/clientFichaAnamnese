@@ -20,7 +20,7 @@ export const useCategories = () => {
 export const useCategoriesId = (id: string) => {
 
   const user = useQuery({
-    queryKey: ["category-id"],
+    queryKey: ["category-id",id],
     queryFn: async () => {
       const response = await api.get(`/categories/${id}`);
   
