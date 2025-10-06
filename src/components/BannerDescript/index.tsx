@@ -8,8 +8,8 @@ const BannerDescript = ({ title, descript }: Props) => {
       <div className="w-full flex items-center justify-center">
         <h1 className="text-4xl text-white">{title}</h1>
       </div>
-      <div className="w-full flex items-center justify-center">
-        <p className="text-white max-w-[510px]">
+      <div className="w-full flex items-center justify-center text-justify">
+        <p className="text-white max-w-[510px] ">
           {descript}
         </p>
       </div>
