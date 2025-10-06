@@ -61,7 +61,7 @@ Nome da clínica/paciente: [Digite seu nome ..]`;
               </div>
 
               <div className="w-full   flex flex-col gap-5 ">
-                <h1 className="text-[#336DFF] uppercase font-bold">
+                <h1 className="mt-5 text-[#336DFF] uppercase font-bold lg:mt-0">
                   {product?.name}
                 </h1>
                 <span className="font-bold">
