@@ -60,9 +60,9 @@ const Banner = () => {
                 className="w-[340px] h-[94px] bg-[#F4F4F4] rounded-md flex items-center justify-center gap-3 flex-col "
                 key={index}
               >
-                <div className="w-[130px] flex  flex-col items-start gap-1  ">
+                <div className="w-full  px-4 flex  flex-col items-start gap-1  ">
                   <h2 className="text-[#072137] w-full text-sm">
-                    Novo contrato de {docs.name}
+                    {docs.name}
                   </h2>
                   <button onClick={()=>openModal(docs)} className=" text-left text-[#336DFF] border-b border-[#336DFF]">
                     Saiba Mais
